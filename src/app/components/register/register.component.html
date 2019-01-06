@@ -1,0 +1,84 @@
+<section id="register" class="mb-5 mt-5">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-6 mx-auto">
+        <div class="card_register">
+          <div class="card shadow bg-white rounded">
+            <div class="card-body text-center">
+              <form #formRegister="ngForm" (ngSubmit)="onAddUser()">
+                <h1 class="h3 mb-3 font-weight-normal">Registro</h1>
+                <div class="alert alert-danger" role="alert" *ngIf="isError">
+                  {{msgError}}
+                </div>
+                <!-- <div class="form-group">
+                  <input type="text" #name="ngModel" name="name" class="form-control" placeholder="Nombre" [(ngModel)]="name" required minlength="4"
+                    maxlength="15">
+                </div> -->
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="name.touched && !name.valid">
+                  <div *ngIf="name.errors.required">El nombre es requerido</div>
+                  <div *ngIf="name.errors.minlength">El nombre debe tener al menos 4 caracteres</div>
+                </div> -->
+                <div class="form-group">
+                  <input type="email" name="email" class="form-control" placeholder="Correo" [(ngModel)]="email" required
+                    minlength="8">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="email.touched && !email.valid">
+                  <div *ngIf="email.errors.required">El correo es requerido</div>
+                  <div *ngIf="email.errors.minlength">El correo debe tener al menos 8 caracteres</div>
+                </div>
+                <div class="form-group">
+                  <input type="password" name="password" class="form-control" placeholder="Contraseña" [(ngModel)]="password"
+                    required minlength="5" maxlength="10">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="password.touched && !password.valid">
+                  <div *ngIf="password.errors.required">La contraseña es requerida</div>
+                  <div *ngIf="password.errors.minlength">La contraseña debe tener al menos 5 caracteres</div>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <h5>Seleccione una imagen: </h5>
+                  <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar"
+                  [style.width]= "(uploadPercent | async) + '%'">
+                  </div>
+                </div>
+                <br>
+                <input #imageUser type="hidden" [value]= "urlImage | async">
+                <button *ngIf="urlImage | async; else btnDisabled" type="submit" class="btn btn-lg btn-primary btn-block">Registro</button>
+                <ng-template #btnDisabled>
+                  <button type="submit" disabled=true class="btn btn-lg btn-secondary btn-block">Registro</button>
+                </ng-template>
+                <div class="form-group">
+                  <a routerLink="/login" class="form-control login-user">¿Ya tienes una cuenta?</a>
+                </div>
+                <div>
+                  <hr>
+                  <p class="form-control login-user">ó Regístrate con:</p>
+                  <!-- <span class= "separator-circle"></span> -->
+                </div>
+                <div class="form-group">  
+                  <button class="btn btn-block btn-social btn-facebook" (click) = "onLoginFacebook()">
+                    <span class="fa fa-facebook"></span> 
+                    Facebook
+                  </button>
+                  <button class="btn btn-block btn-social btn-google" (click) = "onLoginGoogle()">
+                    <span class="fa fa-google"></span> 
+                    Google
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br>
+        <!-- <div class= "pre">
+          <h2>Usuario: </h2>
+          {{ currentUser }}
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>

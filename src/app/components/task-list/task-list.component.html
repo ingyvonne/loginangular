@@ -1,0 +1,9 @@
+<app-task *ngFor="let task of tasks" [task] = "task"></app-task>
+<!-- Necesito pasarle estos datos task a mi componente tareas -->
+<!-- Estos corchetes en mi componente me indican que tengo una entrada llamada tarea y como valor 
+  de esta entrada le voy a pasar la tarea que esta recorriendo por cada iteracion del ngFor y se 
+  lo voy a pasar a mi app-task para que lo muestre -->
+<!-- <div *ngFor="let task of tasks">
+    {{task.title}} - {{task.description}}
+</div> -->
+

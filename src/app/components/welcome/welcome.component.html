@@ -1,0 +1,6 @@
+<section>
+    <div class= "container">
+        <h1 class="text-center mt-5" *ngIf="providerId != 'password'">¡Bienvenido {{user.name}}!</h1>
+        <h1 class="text-center mt-5" *ngIf="providerId == 'password'">¡Bienvenido {{user.email}}!</h1>
+    </div>
+</section>

@@ -1,0 +1,21 @@
+<div class="card mb-2 shadow bg-white rounded">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    {{task.title}}
+    <div>
+      <button class="btn btn-primary" (click)="task.hide = !task.hide">Mostrar detalles</button>
+      <!-- Para que se muestren los detalles de la tarea al hacer click creamos el evento click que va a comparar y si el 
+        estado de task.hide es true lo pasara a false y si es false lo pasara a true -->
+
+      <button class="btn btn-danger" (click)="deleteTask(task)">Borrar</button>
+      <!-- Para borrar las tareas vamos a agregarle al boton borrar un evento click -->
+
+    </div>
+  </div>
+  <!-- Angular nos da una directiva que se llama hidden, se pone entre corchetes como siempre y que nos permite ocultar 
+    un componente dependiendo de si se cumple una propiedad -->
+    <!-- Esta propiedad la estamos declarando en models, en la interfaz Task y tambien tengo que declararlo en los services-->
+    <!-- Le dices que lo oculte si en esta tarea su atributo hide es true, que es por defecto el valor que le he dado -->
+  <div class="card-body" [hidden] = "task.hide">
+    {{task.description}}
+  </div>
+</div>
