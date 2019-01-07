@@ -23,6 +23,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthService } from './services/auth.service';
 import { TaskService } from './app/services/task.service';
+import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -39,18 +41,22 @@ import { TaskService } from './app/services/task.service';
     WelcomeComponent
   ],
   imports: [
+    // los modulos se inyectan en imports
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessagesModule
   ],
   providers: [
+    // los servicios se inyectan como providers
     AuthService,
     TaskService,
-    AngularFireAuth
+    AngularFireAuth,
+    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

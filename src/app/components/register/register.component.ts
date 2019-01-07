@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,8 @@ import { Observable } from 'rxjs/internal/Observable';
 export class RegisterComponent implements OnInit {
 
   // model = new Usuario('1', '', '');
-
-  constructor(private router: Router, private authService: AuthService, private storage: AngularFireStorage, public zone: NgZone) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private router: Router, private authService: AuthService, private storage: AngularFireStorage, public zone: NgZone, public flashMessage: FlashMessagesService) { }
   @ViewChild('imageUser') inputImageUser: ElementRef;
   public email: string = '';
   public password: string = '';
@@ -52,13 +53,21 @@ export class RegisterComponent implements OnInit {
            photoURL: this.inputImageUser.nativeElement.value
           }).then( () => {
             console.log('USER UPDATED!');
+            // notificamos con un mensaje
+            this.flashMessage.show('Usuario creado correctamente.', {cssClass: 'alert-success', timeout: 4000});
             this.router.navigate(['welcome']);
           }).catch( (error) => {
+            // notificamos con un mensaje el error
+            this.flashMessage.show(error.message, {cssClass: 'alert-danger', timeout: 4000});
             console.log('error', error);
           });
         }
       });
-    }).catch((err) => console.log('err', err.message));
+    }).catch((err) => {
+    // notificamos con un mensaje el error
+    this.flashMessage.show(err.message, {cssClass: 'alert-danger', timeout: 4000});
+    console.log('err', err.message);
+  });
   }
 
   onLoginGoogle(): void {
